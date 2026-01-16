@@ -1,0 +1,160 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="USBCDC.Terminal" GeneratedClassName="Settings1">
+  <Profiles />
+  <Settings>
+    <Setting Name="SalvarLog" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bImprimeData" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bImprimeHora" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bImprimeMilisegundos" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bRbtn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="bRbtr" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bRbt0" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bRbtDecimal" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="strFinalizador" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"0"</Value>
+    </Setting>
+    <Setting Name="bRbt16Char" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bRbtRecAscii" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="bRbtRecHexadecimal" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PortaSerial" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+    <Setting Name="BaudRate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">38400</Value>
+    </Setting>
+    <Setting Name="bRbt32Char" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bQuebrarLinha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ArquivoListaComando" Type="System.String" Scope="User">
+      <Value Profile="(Default)">@"ListaComandos.txt"</Value>
+    </Setting>
+    <Setting Name="brbtEnvAscii" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="brbtEnvHexadecimal" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bchkEnvLogar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="bchkRecLogar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="fontTextos" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Courier New, 8.25pt</Value>
+    </Setting>
+    <Setting Name="colorTextos" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="bEnvioAuto" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="EnvioAutoTempo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1800</Value>
+    </Setting>
+    <Setting Name="strDadosEnviar" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NumSerieSeq" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="NumSerieDayMachine" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HwVersionMajor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="HwVersionMinor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="PL2303_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1659</Value>
+    </Setting>
+    <Setting Name="PL2303_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">8963</Value>
+    </Setting>
+    <Setting Name="USERDEFINED_CDC_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">24577</Value>
+    </Setting>
+    <Setting Name="USERDEFINED_CDC_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1027</Value>
+    </Setting>
+    <Setting Name="usbCDCdeviceLast" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PL2303</Value>
+    </Setting>
+    <Setting Name="FT232_FT245_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1027</Value>
+    </Setting>
+    <Setting Name="FT232_FT245_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">24577</Value>
+    </Setting>
+    <Setting Name="PL2303G_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">9123</Value>
+    </Setting>
+    <Setting Name="PL2303G_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1659</Value>
+    </Setting>
+    <Setting Name="FT2232_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1027</Value>
+    </Setting>
+    <Setting Name="FT2232_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">24592</Value>
+    </Setting>
+    <Setting Name="FT4232_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1027</Value>
+    </Setting>
+    <Setting Name="FT4232_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">24593</Value>
+    </Setting>
+    <Setting Name="CH340_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">6790</Value>
+    </Setting>
+    <Setting Name="CH340_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">29987</Value>
+    </Setting>
+    <Setting Name="usbCDCdevice" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;CH340&lt;/string&gt;
+  &lt;string&gt;CP210X&lt;/string&gt;
+  &lt;string&gt;FT232/FT245&lt;/string&gt;
+  &lt;string&gt;FT2232&lt;/string&gt;
+  &lt;string&gt;FT4232&lt;/string&gt;
+  &lt;string&gt;PL2303&lt;/string&gt;
+  &lt;string&gt;PL2303G&lt;/string&gt;
+  &lt;string&gt;USERDEFINED&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="CP210X_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">4292</Value>
+    </Setting>
+    <Setting Name="CP210X_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">60000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

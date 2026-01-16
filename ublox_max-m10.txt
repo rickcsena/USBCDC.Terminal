@@ -1,0 +1,19 @@
+
+// Strings para desabilitar mensagens
+$PUBX,40,GGA,0,0,0,0*5A
+$PUBX,40,GLL,0,0,0,0*5C
+$PUBX,40,GSA,0,0,0,0*4E
+$PUBX,40,GSV,0,0,0,0*59
+$PUBX,40,RMC,0,0,0,0*47
+$PUBX,40,VTG,0,0,0,0*5E
+$PUBX,40,ZDA,0,0,0,0*44
+
+// Strings para habilitar mensagens
+$PUBX,40,RMC,0,1,0,0*42
+$PUBX,40,GGA,0,5,0,0*5F
+$PUBX,40,ZDA,0,1,0,0*45
+
+// Strings para alteração de baudrate
+$PUBX,41,1,0007,0003,19200,0*25
+$PUBX,41,1,0007,0003,38400,0*20
+$PUBX,41,1,0007,0003,115200,0*18
