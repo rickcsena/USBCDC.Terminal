@@ -19,9 +19,9 @@
  
  ## Compilação e IDE 
   
-  Microsoft Visual Studio Community 2022 (64-bit) Version 17.14.8 
-  Microsoft Visual C# Tools 4.14.0-3.25326.11+bd4f2062291278e0df1e3fd3180c0c862495a3a7 
-  Microsoft .NET Framework Version 4.8.09221
+  * Microsoft Visual Studio Community 2022 (64-bit) Version 17.14.8 
+  * Microsoft Visual C# Tools 4.14.0-3.25326.11+bd4f2062291278e0df1e3fd3180c0c862495a3a7 
+  * Microsoft .NET Framework Version 4.8.09221
   
  ## Introdução  
   
@@ -51,4 +51,5 @@
   
  
 ----
+
   
