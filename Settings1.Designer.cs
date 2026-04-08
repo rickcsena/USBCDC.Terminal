@@ -565,28 +565,6 @@ namespace USBCDC.Terminal {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>CH340</string>
-  <string>CP210X</string>
-  <string>FT232/FT245</string>
-  <string>FT2232</string>
-  <string>FT4232</string>
-  <string>PL2303</string>
-  <string>PL2303G</string>
-  <string>USERDEFINED</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection usbCDCdevice {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["usbCDCdevice"]));
-            }
-            set {
-                this["usbCDCdevice"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("4292")]
         public uint CP210X_VID {
             get {
@@ -606,6 +584,53 @@ namespace USBCDC.Terminal {
             }
             set {
                 this["CP210X_PID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1027")]
+        public uint FT231X_VID {
+            get {
+                return ((uint)(this["FT231X_VID"]));
+            }
+            set {
+                this["FT231X_VID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("24597")]
+        public uint FT231X_PID {
+            get {
+                return ((uint)(this["FT231X_PID"]));
+            }
+            set {
+                this["FT231X_PID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>CH340</string>
+  <string>CP210X</string>
+  <string>FT231X</string>
+  <string>FT232/FT245</string>
+  <string>FT2232</string>
+  <string>FT4232</string>
+  <string>PL2303</string>
+  <string>PL2303G</string>
+  <string>USERDEFINED</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection usbCDCdevice {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["usbCDCdevice"]));
+            }
+            set {
+                this["usbCDCdevice"] = value;
             }
         }
     }

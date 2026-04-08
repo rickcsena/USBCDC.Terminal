@@ -137,11 +137,24 @@
     <Setting Name="CH340_PID" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">29987</Value>
     </Setting>
+    <Setting Name="CP210X_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">4292</Value>
+    </Setting>
+    <Setting Name="CP210X_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">60000</Value>
+    </Setting>
+    <Setting Name="FT231X_VID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1027</Value>
+    </Setting>
+    <Setting Name="FT231X_PID" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">24597</Value>
+    </Setting>
     <Setting Name="usbCDCdevice" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;string&gt;CH340&lt;/string&gt;
   &lt;string&gt;CP210X&lt;/string&gt;
+  &lt;string&gt;FT231X&lt;/string&gt;
   &lt;string&gt;FT232/FT245&lt;/string&gt;
   &lt;string&gt;FT2232&lt;/string&gt;
   &lt;string&gt;FT4232&lt;/string&gt;
@@ -149,12 +162,6 @@
   &lt;string&gt;PL2303G&lt;/string&gt;
   &lt;string&gt;USERDEFINED&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
-    </Setting>
-    <Setting Name="CP210X_VID" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">4292</Value>
-    </Setting>
-    <Setting Name="CP210X_PID" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">60000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1343,57 +1343,64 @@ namespace USB_CDC_TERMINAL
         private void DeviceChanged()
         {
 
-            if (cbxDevice.Text == "CH340")
-            {
+            switch (cbxDevice.Text) {
+                case "CH340":
                 VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CH340_VID.ToString("X4");
                 PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CH340_PID.ToString("X4");
                 VIDTextBox.Enabled = false;
                 PIDTextBox.Enabled = false;
-            }
-            else if (cbxDevice.Text == "CP210X")
-            {
+                    break;
+
+                case "CP210X":
                 VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CP210X_VID.ToString("X4");
                 PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CP210X_PID.ToString("X4");
                 VIDTextBox.Enabled = false;
                 PIDTextBox.Enabled = false;
-            }
-            else if (cbxDevice.Text == "FT232/FT245")
-            {
+                    break;
+
+                case "FT231X":
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT231X_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT231X_PID.ToString("X4");
+                    VIDTextBox.Enabled = false;
+                    PIDTextBox.Enabled = false;
+                    break;
+
+                case "FT232/FT245":
                 VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT232_FT245_VID.ToString("X4");
                 PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT232_FT245_PID.ToString("X4");
                 VIDTextBox.Enabled = false;
                 PIDTextBox.Enabled = false;
-            }
-            else if (cbxDevice.Text == "FT2232")
-            {
+                    break;
+
+                case "FT2232":
                 VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT2232_VID.ToString("X4");
                 PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT2232_PID.ToString("X4");
                 VIDTextBox.Enabled = false;
                 PIDTextBox.Enabled = false;
-            }
-            else if (cbxDevice.Text == "FT4232")
-            {
+                    break;
+
+                case "FT4232":
                 VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT4232_VID.ToString("X4");
                 PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT4232_PID.ToString("X4");
                 VIDTextBox.Enabled = false;
                 PIDTextBox.Enabled = false;
-            }
-            else if (cbxDevice.Text == "PL2303")
-            {
+                    break;
+
+                case "PL2303":
                 VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303_VID.ToString("X4");
                 PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303_PID.ToString("X4");
                 VIDTextBox.Enabled = false;
                 PIDTextBox.Enabled = false;
-            }
-            else if (cbxDevice.Text == "PL2303G")
-            {
+                    break;
+
+                case "PL2303G":
                 VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303G_VID.ToString("X4");
                 PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303G_PID.ToString("X4");
                 VIDTextBox.Enabled = false;
                 PIDTextBox.Enabled = false;
-            }
-            else
-            {
+                    break;
+
+                default:
                 if (cbxDevice.Text != "USERDEFINED") {
                     cbxDevice.Text = "USERDEFINED";
                 }
@@ -1401,6 +1408,7 @@ namespace USB_CDC_TERMINAL
                 PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.USERDEFINED_CDC_PID.ToString("X4");
                 VIDTextBox.Enabled = true;
                 PIDTextBox.Enabled = true;
+                    break;
             }
         }
 
