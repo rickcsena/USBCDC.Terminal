@@ -254,7 +254,7 @@ namespace USB_CDC_TERMINAL
                     }
                     else
                     {
-                        MessageBox.Show("Dispositivo USB Desconectado ou Inválido!", "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        WarningBox.Show("Dispositivo USB Desconectado ou Inválido!", "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -284,7 +284,7 @@ namespace USB_CDC_TERMINAL
 
                 } catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Erro ao abrir porta serial!");
+                    WarningBox.Show(ex.Message, "Erro ao abrir porta serial!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 if (serial.IsOpen == true)
@@ -427,7 +427,7 @@ namespace USB_CDC_TERMINAL
                         // Verifica quantidade minima
                         if ((txtEnviar.Text.Length != 2) && ((txtEnviar.Text.Length < 2) || (!((txtEnviar.Text.Length > 2) && (((txtEnviar.Text.Length - (txtEnviar.Text.Length / 3)) % 2) == 0)))))
                         {
-                            MessageBox.Show("Quantidade de caracteres ou formato inválido!\nDeve ser dois caracteres separados por espaço.\nExemplo: 0A 3F 5C", "Erro ao Enviar Hex Ascii", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            WarningBox.Show("Quantidade de caracteres ou formato inválido!\nDeve ser dois caracteres separados por espaço.\nExemplo: 0A 3F 5C", "Erro ao Enviar Hex Ascii", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
@@ -1498,4 +1498,25 @@ namespace USB_CDC_TERMINAL
         }
     }
         
+    // Bloqueia a abertura de múltiplos MessageBox em chamadas de threads
+    public static class WarningBox
+    {
+        public static bool IsOpen { get; private set; }
+
+        public static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            if (IsOpen) return DialogResult.None;
+
+            try
+            {
+                IsOpen = true;
+                return MessageBox.Show(text, caption, buttons, icon);
+            }
+            finally
+            {
+                IsOpen = false;
+            }
+        }
+    }
+
 }
