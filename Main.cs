@@ -7,7 +7,9 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
+using System.Management;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using USBClassLibrary;
@@ -237,6 +239,60 @@ namespace USB_CDC_TERMINAL
             base.WndProc(ref m);
         }
 
+
+        //--------------------------------------------------------------------------------------------------
+        // Método complementar para achar o nome da porta se a USBClassLibrary falhar (no caso do FT231X não acha, pode ser que a lib já é muito velha ou conflitos no sistema com a lisusb)
+        public string GetComPortByUsbDetails(string vid, string pid)
+        {
+            // Procura por todos dispositivos PnP devices que tenham a "(COM" no nome
+            using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Caption LIKE '%(COM%'"))
+            {
+                var devices = searcher.Get();
+                if (devices == null)
+                {
+                    return null;
+                }
+
+                foreach (var device in devices)
+                {
+                    string caption = device["Caption"]?.ToString();
+                    string name = device["Name"]?.ToString();
+                    string pnpDeviceId = device["PNPDeviceID"]?.ToString();
+
+                    /* // Método para logar propriedades e verificar campos para uso
+                    foreach (PropertyData property in device.Properties)
+                    {
+                        Console.WriteLine($"{property.Name}: {property.Value?.ToString() ?? "null"}");
+                    }
+                    */
+
+                    // Checa USB VID e PID
+                    if (pnpDeviceId != null && pnpDeviceId.Contains($"VID_{vid}") && pnpDeviceId.Contains($"PID_{pid}"))
+                    {
+                        // Tentativa 1
+                        if (caption != null)
+                        {
+                            var match = Regex.Match(caption, @"\((COM\d+)\)");
+                            if (match.Success)
+                            {
+                                return match.Groups[1].Value;
+                            }
+                        }
+                        // Tentativa 2
+                        if (caption != null)
+                        {
+                            var match = Regex.Match(name, @"\((COM\d+)\)");
+                            if (match.Success)
+                            {
+                                return match.Groups[1].Value;
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
         //--------------------------------------------------------------------------------------------------
         private void ConectarSerial(Boolean IsUsb)
         {
@@ -248,9 +304,23 @@ namespace USB_CDC_TERMINAL
                 {
                     if (MyUSBDeviceConnected)
                     {
-                        Porta = "USB " + USBDeviceProperties.COMPort.ToString();
+                        string portName = USBDeviceProperties.COMPort.ToString();
+                        if ((portName.Length<3) || (!portName.Contains("COM")))
+                        {
+                            // Tenta alternativamente pegar a informação
+                            string portNameAlias = GetComPortByUsbDetails(VIDTextBox.Text, PIDTextBox.Text);
+                            if ((portNameAlias.Length < 3) || (!portNameAlias.Contains("COM")))
+                            {
+                                WarningBox.Show("Nome da porta inválido para esse dispositivo USB! " + USBDeviceProperties.COMPort.ToString(), "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            portName = portNameAlias;                            
+                        }
+                        Porta = "USB " + portName;
                         serial.BaudRate = Convert.ToInt32(cbxBaudrate.Text);
-                        serial.PortName = USBDeviceProperties.COMPort.ToString();
+                        serial.PortName = portName;
+                        serial.RtsEnable = chkRTS.Checked;
+                        serial.DtrEnable = chkDTR.Checked;
                     }
                     else
                     {
@@ -1345,17 +1415,17 @@ namespace USB_CDC_TERMINAL
 
             switch (cbxDevice.Text) {
                 case "CH340":
-                VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CH340_VID.ToString("X4");
-                PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CH340_PID.ToString("X4");
-                VIDTextBox.Enabled = false;
-                PIDTextBox.Enabled = false;
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CH340_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CH340_PID.ToString("X4");
+                    VIDTextBox.Enabled = false;
+                    PIDTextBox.Enabled = false;
                     break;
 
                 case "CP210X":
-                VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CP210X_VID.ToString("X4");
-                PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CP210X_PID.ToString("X4");
-                VIDTextBox.Enabled = false;
-                PIDTextBox.Enabled = false;
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CP210X_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.CP210X_PID.ToString("X4");
+                    VIDTextBox.Enabled = false;
+                    PIDTextBox.Enabled = false;
                     break;
 
                 case "FT231X":
@@ -1366,48 +1436,48 @@ namespace USB_CDC_TERMINAL
                     break;
 
                 case "FT232/FT245":
-                VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT232_FT245_VID.ToString("X4");
-                PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT232_FT245_PID.ToString("X4");
-                VIDTextBox.Enabled = false;
-                PIDTextBox.Enabled = false;
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT232_FT245_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT232_FT245_PID.ToString("X4");
+                    VIDTextBox.Enabled = false;
+                    PIDTextBox.Enabled = false;
                     break;
 
                 case "FT2232":
-                VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT2232_VID.ToString("X4");
-                PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT2232_PID.ToString("X4");
-                VIDTextBox.Enabled = false;
-                PIDTextBox.Enabled = false;
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT2232_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT2232_PID.ToString("X4");
+                    VIDTextBox.Enabled = false;
+                    PIDTextBox.Enabled = false;
                     break;
 
                 case "FT4232":
-                VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT4232_VID.ToString("X4");
-                PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT4232_PID.ToString("X4");
-                VIDTextBox.Enabled = false;
-                PIDTextBox.Enabled = false;
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT4232_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.FT4232_PID.ToString("X4");
+                    VIDTextBox.Enabled = false;
+                    PIDTextBox.Enabled = false;
                     break;
 
                 case "PL2303":
-                VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303_VID.ToString("X4");
-                PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303_PID.ToString("X4");
-                VIDTextBox.Enabled = false;
-                PIDTextBox.Enabled = false;
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303_PID.ToString("X4");
+                    VIDTextBox.Enabled = false;
+                    PIDTextBox.Enabled = false;
                     break;
 
                 case "PL2303G":
-                VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303G_VID.ToString("X4");
-                PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303G_PID.ToString("X4");
-                VIDTextBox.Enabled = false;
-                PIDTextBox.Enabled = false;
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303G_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.PL2303G_PID.ToString("X4");
+                    VIDTextBox.Enabled = false;
+                    PIDTextBox.Enabled = false;
                     break;
 
                 default:
-                if (cbxDevice.Text != "USERDEFINED") {
-                    cbxDevice.Text = "USERDEFINED";
-                }
-                VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.USERDEFINED_CDC_VID.ToString("X4");
-                PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.USERDEFINED_CDC_PID.ToString("X4");
-                VIDTextBox.Enabled = true;
-                PIDTextBox.Enabled = true;
+                    if (cbxDevice.Text != "USERDEFINED") {
+                        cbxDevice.Text = "USERDEFINED";
+                    }
+                    VIDTextBox.Text = USBCDC.Terminal.Settings1.Default.USERDEFINED_CDC_VID.ToString("X4");
+                    PIDTextBox.Text = USBCDC.Terminal.Settings1.Default.USERDEFINED_CDC_PID.ToString("X4");
+                    VIDTextBox.Enabled = true;
+                    PIDTextBox.Enabled = true;
                     break;
             }
         }
@@ -1497,7 +1567,7 @@ namespace USB_CDC_TERMINAL
             }
         }
     }
-        
+
     // Bloqueia a abertura de múltiplos MessageBox em chamadas de threads
     public static class WarningBox
     {
